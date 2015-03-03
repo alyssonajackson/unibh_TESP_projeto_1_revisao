@@ -30,6 +30,10 @@ public class Aluno extends Pessoa {
 		super(nome, null);
 		this.matricula = matricula;
 	}
+	
+	public static Boolean verificaMatricula(String matricula){
+		return matricula != null && !matricula.isEmpty() && matricula.matches("/^\\d+$/");
+	}
 
 	public Long getMatricula() {
 		return matricula;
@@ -52,6 +56,5 @@ public class Aluno extends Pessoa {
 		return super.toString() + "Aluno [matricula=" + matricula + ", dataAniversario="
 				+ dataAniversario + "]";
 	}
-
 	
 }
