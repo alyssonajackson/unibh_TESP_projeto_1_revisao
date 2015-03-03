@@ -20,6 +20,9 @@ public class Que01 {
 		Professor p1 = new Professor("Pollyanna", "1212121", new BigDecimal(
 				"999999999"));
 
+		System.out.println("BÔNUS ===== " + Professor.BONUS);
+		System.out.println(Aluno.verificaMatricula(("1212121212")));
+		
 		System.out.println(a1);
 		System.out.println(a2);
 		System.out.println(p1);

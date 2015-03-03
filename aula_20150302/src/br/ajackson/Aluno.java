@@ -31,8 +31,8 @@ public class Aluno extends Pessoa {
 		this.matricula = matricula;
 	}
 	
-	public static Boolean verificaMatricula(String matricula){
-		return matricula != null && !matricula.isEmpty() && matricula.matches("/^\\d+$/");
+	public static boolean verificaMatricula(String matricula){
+		return matricula != null && !matricula.isEmpty() && matricula.matches("^\\d+$");
 	}
 
 	public Long getMatricula() {
