@@ -10,53 +10,29 @@ import java.util.Date;
  * @date 2015-02-24
  *
  */
-public class Aluno {
+public class Aluno extends Pessoa {
 
 	private Long matricula;
-	private String nome;
-	private String cpf;
 	private Date dataAniversario;
 
 	public Aluno(Long matricula, String nome, String cpf, Date dataAniversario) {
+		super(nome, cpf);
 		this.matricula = matricula;
-		this.nome = nome;
-		this.cpf = cpf;
 		this.dataAniversario = dataAniversario;
 	}
 
 	public Aluno(Long matricula, String nome, String cpf) {
+		super(nome, cpf);
 		this.matricula = matricula;
-		this.nome = nome;
-		this.cpf = cpf;
 	}
 
 	public Aluno(Long matricula, String nome) {
+		super(nome, null);
 		this.matricula = matricula;
-		this.nome = nome;
 	}
 
 	public Long getMatricula() {
 		return matricula;
-	}
-
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public Date getDataAniversario() {
@@ -67,10 +43,15 @@ public class Aluno {
 		this.dataAniversario = dataAniversario;
 	}
 
-	@Override
-	public String toString() {
-		return "Aluno [matricula=" + matricula + ", nome=" + nome + ", cpf="
-				+ cpf + ", dataAniversario=" + dataAniversario + "]";
+	public void setMatricula(Long matricula) {
+		this.matricula = matricula;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + "Aluno [matricula=" + matricula + ", dataAniversario="
+				+ dataAniversario + "]";
+	}
+
+	
 }
