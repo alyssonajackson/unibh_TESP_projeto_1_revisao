@@ -3,6 +3,9 @@ package br.ajackson;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import br.ajackson.entidades.Aluno;
+import br.ajackson.entidades.Professor;
+
 /**
  * @author: Alysson Ajackson
  * @date: 2015-02-24 Esse algoritmo imprime 10 vezes o texto "Alô mundo" na
@@ -13,11 +16,11 @@ public class Que01 {
 
 	public static void main(String[] args) {
 
-		Aluno a1 = new Aluno(1234L, "João", "9191919191", new Date());
-		Aluno a2 = new Aluno(5678L, "Maria", "12812128128");
-		Aluno a3 = new Aluno(5678L, "Maria");
+		Aluno a1 = new Aluno(1L, 1234L, "João", "9191919191", new Date());
+		Aluno a2 = new Aluno(2L, 5678L, "Maria", "12812128128");
+		Aluno a3 = new Aluno(3L, 5678L, "Maria");
 
-		Professor p1 = new Professor("Pollyanna", "1212121", new BigDecimal(
+		Professor p1 = new Professor(4L, "Pollyanna", "1212121", new BigDecimal(
 				"999999999"));
 
 		System.out.println("BÔNUS ===== " + Professor.BONUS);

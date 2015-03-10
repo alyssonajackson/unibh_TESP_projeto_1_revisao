@@ -1,4 +1,4 @@
-package br.ajackson;
+package br.ajackson.entidades;
 
 import java.math.BigDecimal;
 
@@ -7,13 +7,13 @@ public class Professor extends Pessoa {
 	private BigDecimal salario;
 	public static Double BONUS = 0.1D;
 	
-	public Professor(String nome, String cpf, BigDecimal salario) {
-		super(nome, cpf);
+	public Professor(Long id, String nome, String cpf, BigDecimal salario) {
+		super(id, nome, cpf);
 		this.salario = salario;
 	}
 	
-	public Professor(String nome, String cpf) {
-		super(nome, cpf);
+	public Professor(Long id, String nome, String cpf) {
+		super(id, nome, cpf);
 	}
 
 	public BigDecimal getSalario() {

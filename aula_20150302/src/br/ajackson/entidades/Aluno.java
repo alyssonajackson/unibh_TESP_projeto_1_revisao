@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.ajackson;
+package br.ajackson.entidades;
 
 import java.util.Date;
 
@@ -15,19 +15,19 @@ public class Aluno extends Pessoa {
 	private Long matricula;
 	private Date dataAniversario;
 
-	public Aluno(Long matricula, String nome, String cpf, Date dataAniversario) {
-		super(nome, cpf);
+	public Aluno(Long id, Long matricula, String nome, String cpf, Date dataAniversario) {
+		super(id, nome, cpf);
 		this.matricula = matricula;
 		this.dataAniversario = dataAniversario;
 	}
 
-	public Aluno(Long matricula, String nome, String cpf) {
-		super(nome, cpf);
+	public Aluno(Long id, Long matricula, String nome, String cpf) {
+		super(id, nome, cpf);
 		this.matricula = matricula;
 	}
 
-	public Aluno(Long matricula, String nome) {
-		super(nome, null);
+	public Aluno(Long id, Long matricula, String nome) {
+		super(id, nome, null);
 		this.matricula = matricula;
 	}
 	
