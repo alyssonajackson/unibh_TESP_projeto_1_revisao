@@ -1,10 +1,13 @@
 package br.ajackson;
 
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 import br.ajackson.entidades.Aluno;
 import br.ajackson.entidades.Professor;
+import br.ajackson.persistencia.JDBCUtil;
 
 /**
  * @author: Alysson Ajackson
@@ -29,6 +32,16 @@ public class Que01 {
 		System.out.println(a1);
 		System.out.println(a2);
 		System.out.println(p1);
+		
+		try {
+			ResultSet rs = JDBCUtil.getConnection().prepareStatement("SELECT * FROM TB_ALUNO LIMIT 3;").executeQuery();
+			while(rs.next()){
+				System.out.println(rs.getLong("ID") + "\t" + rs.getString("NOME"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 
 		// for(int i = 0; i < 10; i++)
 		// System.out.println("Alô mundo");
