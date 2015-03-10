@@ -34,7 +34,7 @@ public class Que01 {
 		System.out.println(p1);
 		
 		try {
-			ResultSet rs = JDBCUtil.getConnection().prepareStatement("SELECT * FROM TB_ALUNO LIMIT 3;").executeQuery();
+			ResultSet rs = JDBCUtil.getConnection().prepareStatement("SELECT * FROM TB_ALUNO;").executeQuery();
 			while(rs.next()){
 				System.out.println(rs.getLong("ID") + "\t" + rs.getString("NOME"));
 			}
