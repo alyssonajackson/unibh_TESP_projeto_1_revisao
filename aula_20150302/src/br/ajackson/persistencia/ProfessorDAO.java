@@ -2,6 +2,7 @@ package br.ajackson.persistencia;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import br.ajackson.entidades.Professor;
@@ -71,19 +72,46 @@ public class ProfessorDAO implements DAO<Professor, Long> {
 
 	@Override
 	public void update(Professor t) {
-		// TODO Auto-generated method stub
+		
+		try {
+			
+			String sql = "UPDATE TB_PROFESSOR SET NOME = ?, CPF = ?, SALARIO = ? WHERE ID = ? LIMIT 1;";
+			
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(sql);
+			
+			ps.setString(1, t.getNome());
+			ps.setString(2, t.getCPF());
+			ps.setBigDecimal(3, t.getSalario());
+			ps.setLong(4, t.getId());
+			
+			ps.executeUpdate();
+			
+			JDBCUtil.closeConnection();
+			
+		} catch (Exception e) {
+
+		}
 
 	}
 
 	@Override
 	public void delete(Professor t) {
-		// TODO Auto-generated method stub
-
+		try {
+			String sql = "DELETE FROM TB_PROFESSOR WHERE ID = ? LIMIT 1;";
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(sql);
+			ps.setLong(1,  t.getId());
+			
+			ps.executeUpdate();
+			
+			JDBCUtil.closeConnection();
+			
+		} catch (Exception e) {
+		}
 	}
 
 	@Override
 	public List<Professor> findAll() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

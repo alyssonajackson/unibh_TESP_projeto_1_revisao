@@ -67,7 +67,7 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 			ps.setLong(1, t.getMatricula());
 			ps.setString(2, t.getNome());
 			ps.setString(3, t.getCPF());
-			
+
 			if (t.getDataAniversario() == null)
 				ps.setNull(4, Types.NULL);
 			else
@@ -83,14 +83,47 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 
 	@Override
 	public void update(Aluno t) {
-		// TODO Auto-generated method stub
+		try {
+
+			String sql = "UPDATE TB_ALUNO SET MATRICULA = ?, NOME = ?, CPF = ?, DATA_ANIVERSARIO = ? WHERE ID = ? LIMIT 1;";
+
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(
+					sql);
+
+			ps.setLong(1, t.getMatricula());
+			ps.setString(2, t.getNome());
+			ps.setString(3, t.getCPF());
+			
+			if (t.getDataAniversario() == null)
+				ps.setNull(4, Types.NULL);
+			else
+				ps.setString(4, df.format(t.getDataAniversario()));
+			
+			ps.setLong(5, t.getId());
+
+			ps.executeUpdate();
+
+			JDBCUtil.closeConnection();
+
+		} catch (Exception e) {
+
+		}
 
 	}
 
 	@Override
 	public void delete(Aluno t) {
-		// TODO Auto-generated method stub
-
+		try {
+			String sql = "DELETE FROM TB_ALUNO WHERE ID = ? LIMIT 1;";
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(sql);
+			ps.setLong(1,  t.getId());
+			
+			ps.executeUpdate();
+			
+			JDBCUtil.closeConnection();
+			
+		} catch (Exception e) {
+		}
 	}
 
 	@Override
