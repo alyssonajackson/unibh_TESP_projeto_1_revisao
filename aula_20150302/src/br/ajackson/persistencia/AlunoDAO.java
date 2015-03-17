@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ajackson.entidades.Aluno;
@@ -93,12 +94,12 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 			ps.setLong(1, t.getMatricula());
 			ps.setString(2, t.getNome());
 			ps.setString(3, t.getCPF());
-			
+
 			if (t.getDataAniversario() == null)
 				ps.setNull(4, Types.NULL);
 			else
 				ps.setString(4, df.format(t.getDataAniversario()));
-			
+
 			ps.setLong(5, t.getId());
 
 			ps.executeUpdate();
@@ -115,21 +116,41 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 	public void delete(Aluno t) {
 		try {
 			String sql = "DELETE FROM TB_ALUNO WHERE ID = ? LIMIT 1;";
-			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(sql);
-			ps.setLong(1,  t.getId());
-			
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(
+					sql);
+			ps.setLong(1, t.getId());
+
 			ps.executeUpdate();
-			
+
 			JDBCUtil.closeConnection();
-			
+
 		} catch (Exception e) {
 		}
 	}
 
 	@Override
 	public List<Aluno> findAll() {
-		// TODO Auto-generated method stub
+		ArrayList<Aluno> rows = new ArrayList<Aluno>();
+
+		try {
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(
+					"SELECT * FROM TB_ALUNO;");
+
+			ResultSet row = ps.executeQuery();
+
+			while (row.next()) {
+				rows.add(new Aluno(row.getLong("ID"), row.getLong("MATRICULA"),
+						row.getString("NOME"), row.getString("CPF"), row
+								.getString("DATA_ANIVERSARIO") == null ? null
+								: df.parse(row.getString("DATA_ANIVERSARIO"))));
+			}
+
+			JDBCUtil.closeConnection();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return null;
 	}
-
 }
