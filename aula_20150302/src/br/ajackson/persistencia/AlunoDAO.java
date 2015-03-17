@@ -22,6 +22,8 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 			if (row.next()) {
 				return new Aluno(row.getLong("ID"), row.getLong("MATRICULA"), row.getString("NOME"), row.getString("CPF"), row.getString("DATA_ANIVERSARIO") == null ? null : df.parse(row.getString("DATA_ANIVERSARIO"))); 
 			}
+			
+			JDBCUtil.closeConnection();
 
 		} catch (Exception e) {
 			e.printStackTrace();
