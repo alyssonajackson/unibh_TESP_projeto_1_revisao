@@ -127,6 +127,8 @@ public class ProfessorDAO implements DAO<Professor, Long> {
 			}
 
 			JDBCUtil.closeConnection();
+			
+			return rows;
 
 		} catch (Exception e) {
 			e.printStackTrace();

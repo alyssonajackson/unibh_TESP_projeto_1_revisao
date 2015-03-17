@@ -146,6 +146,8 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 			}
 
 			JDBCUtil.closeConnection();
+			
+			return rows;
 
 		} catch (Exception e) {
 			e.printStackTrace();
