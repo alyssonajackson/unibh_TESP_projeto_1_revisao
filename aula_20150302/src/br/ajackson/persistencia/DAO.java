@@ -6,7 +6,7 @@ public interface DAO<Type, pk_type> {
 
 	public Type find(pk_type id);
 	
-	public boolean insert(Type t);
+	public void insert(Type t);
 	
 	public void update(Type t);
 	

@@ -11,7 +11,7 @@ public class JDBCUtil {
 	public static Connection getConnection() throws Exception{
 		if(conn == null || conn.isClosed()){
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/unibh_tesp_1", "unibh", "1234");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/unibh_tesp_1_test", "unibh", "1234");
 		}
 		return conn;
 	}
