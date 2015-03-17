@@ -1,8 +1,8 @@
 package br.ajackson;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -13,7 +13,6 @@ import br.ajackson.entidades.Aluno;
 import br.ajackson.entidades.Professor;
 import br.ajackson.persistencia.AlunoDAO;
 import br.ajackson.persistencia.JDBCTestes;
-import br.ajackson.persistencia.JDBCUtil;
 import br.ajackson.persistencia.ProfessorDAO;
 
 public class Testes {
@@ -25,14 +24,14 @@ public class Testes {
 		alu.insert(a);
 
 		Aluno row = alu.findByCPF(a.getCPF());
-		Assert.assertEquals(row.getCPF(), a.getCPF());
+		Assert.assertEquals(a.getCPF(), row.getCPF());
 	}
 
 	@Test
 	public void testeBuscarAluno() {
 		AlunoDAO dao = new AlunoDAO();
 		Aluno a = dao.findByCPF("9191919191");
-		Assert.assertEquals(a.getNome(), "Ann");
+		Assert.assertEquals("Ann", a.getNome());
 	}
 
 	@Test
@@ -44,14 +43,14 @@ public class Testes {
 		prof.insert(p);
 
 		Professor row = prof.findByCPF(p.getCPF());
-		Assert.assertEquals(row.getCPF(), p.getCPF());
+		Assert.assertEquals(p.getCPF(), row.getCPF());
 	}
 
 	@Test
 	public void testeBuscarProfessor() {
 		ProfessorDAO prof = new ProfessorDAO();
 		Professor row = prof.find(1L);
-		Assert.assertEquals(row.getNome(), "Girafales");
+		Assert.assertEquals("Girafales", row.getNome());
 	}
 
 	@Before
@@ -95,7 +94,7 @@ public class Testes {
 		alu.update(a);
 
 		Aluno b = alu.findByCPF(cpf);
-		Assert.assertEquals(b.getNome(), "Betty Anne");
+		Assert.assertEquals("Betty Anne", b.getNome());
 	}
 
 	@Test
@@ -110,7 +109,7 @@ public class Testes {
 		prof.update(p);
 
 		Professor p2 = prof.findByCPF(cpf);
-		Assert.assertEquals(p2.getNome(), "Harold Finch");
+		Assert.assertEquals("Harold Finch", p2.getNome());
 	}
 
 	@Test
@@ -119,7 +118,7 @@ public class Testes {
 		Aluno a = dao.find(1L);
 		String cpf = a.getCPF();
 		dao.delete(a);
-		
+
 		Aluno row = dao.findByCPF(cpf);
 		Assert.assertNull(row);
 	}
@@ -130,9 +129,23 @@ public class Testes {
 		Professor p = dao.find(1L);
 		String cpf = p.getCPF();
 		dao.delete(p);
-		
+
 		Professor row = dao.findByCPF(cpf);
 		Assert.assertNull(row);
+	}
+
+	@Test
+	public void testaSelecionarTodosAlunos() {
+		AlunoDAO dao = new AlunoDAO();
+		List<Aluno> rows = dao.findAll();
+		Assert.assertEquals(3, rows.size());
+	}
+
+	@Test
+	public void testaSelecionarTodosProfessores() {
+		ProfessorDAO dao = new ProfessorDAO();
+		List<Professor> rows = dao.findAll();
+		Assert.assertEquals(3, rows.size());
 	}
 
 }
