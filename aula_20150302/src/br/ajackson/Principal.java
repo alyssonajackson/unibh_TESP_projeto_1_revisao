@@ -15,7 +15,7 @@ import br.ajackson.persistencia.JDBCUtil;
  *        saída padrão
  */
 
-public class Que01 {
+public class Principal {
 
 	public static void main(String[] args) {
 
