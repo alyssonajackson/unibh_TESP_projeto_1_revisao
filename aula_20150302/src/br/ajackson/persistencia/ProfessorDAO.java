@@ -1,5 +1,7 @@
 package br.ajackson.persistencia;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import br.ajackson.entidades.Professor;
@@ -8,7 +10,20 @@ public class ProfessorDAO implements DAO<Professor, Long> {
 
 	@Override
 	public Professor find(Long id) {
-		// TODO Auto-generated method stub
+		try{
+			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement("SELECT * FROM TB_PROFESSOR WHERE ID = ?");
+			ps.setLong(1, id);
+			
+			ResultSet row = ps.executeQuery();
+			
+			if(row.next()){
+				return new Professor(row.getLong("ID"), row.getString("NOME"), row.getString("CPF"), row.getBigDecimal("SALARIO"));
+			}
+			
+		}catch(Exception e){
+			
+		}
+		
 		return null;
 	}
 
