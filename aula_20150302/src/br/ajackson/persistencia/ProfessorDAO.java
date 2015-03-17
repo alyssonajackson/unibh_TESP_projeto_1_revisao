@@ -34,8 +34,6 @@ public class ProfessorDAO implements DAO<Professor, Long> {
 			PreparedStatement ps = JDBCUtil.getConnection().prepareStatement(
 					"SELECT * FROM TB_PROFESSOR WHERE CPF = ?");
 			ps.setString(1, cpf);
-
-			System.out.println(ps.toString());
 			
 			ResultSet row = ps.executeQuery();
 
