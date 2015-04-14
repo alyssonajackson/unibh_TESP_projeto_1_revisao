@@ -35,7 +35,7 @@ public abstract class Pessoa {
 	@Column(name="NOME", length=100, columnDefinition="VARCHAR(100)")
 	private String nome;
 	
-	@Column(name="CPF", unique=true, columnDefinition="CHAR", length=14, nullable=false)
+	@Column(name="CPF", unique=true, columnDefinition="CHAR(14)", length=14, nullable=false)
 //	@NotBlank
 //	@Size(min=14, max=14)
 	@Pattern(regexp = "^\\d{3}.\\d{3}.\\d{3}-\\d{2}$")
