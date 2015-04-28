@@ -31,15 +31,19 @@ public abstract class Pessoa {
 	private Long id;
 
 //	@NotBlank
-	@Pattern(regexp = "^[A-Za-zÀ-ú ]{5,100}$")
+	@Pattern(regexp = "^[A-Za-zÀ-ú ]{5,100}$", message="favor fornecer apenas letras e espacos")
 	@Column(name="NOME", length=100, columnDefinition="VARCHAR(100)")
 	private String nome;
 	
 	@Column(name="CPF", unique=true, columnDefinition="CHAR(14)", length=14, nullable=false)
 //	@NotBlank
 //	@Size(min=14, max=14)
-	@Pattern(regexp = "^\\d{3}.\\d{3}.\\d{3}-\\d{2}$")
+	@Pattern(regexp = "^\\d{3}.\\d{3}.\\d{3}-\\d{2}$", message="CPF invalido")
 	private String CPF;
+	
+	public Pessoa(){
+		
+	}
 	
 	public Pessoa(Long id, String nome, String cPF) {
 		super();
